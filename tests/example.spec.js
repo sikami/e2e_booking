@@ -57,3 +57,11 @@ test('token is different for different user', async ({ request }) => {
 
 });
 
+test("I can create booking succesfully", async ({ request }) => {
+
+})
+//test made 2 bookings, different user, and different booking, get them both, make sure its different
+//update booking, name, get booking
+//update booking, check for schema
+
+//

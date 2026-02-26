@@ -11,12 +11,14 @@ import { valid_booking } from './create_booking_data.js';
 
 
 test('I can create booking and retrieve it succesfully', async ({ request }) => {
-   let booking = new CreateBooking(request)
-   const response = await booking.create_booking("valid")
-   expect(await response.ok()).toBeTruthy()
-   const booking_id = await booking.get_booking_id(response)
-   expect(booking_id).not.toBeNull()
+   const booking = new CreateBooking(request);
+
+   const booking_response = await booking.create_booking("valid");
+   expect(await booking_response.ok()).toBeTruthy();
+
+   const booking_id = await booking.get_booking_id(booking_response);
+   expect(booking_id).not.toBeNull();
    
-   const get_booking_response = await booking.get_booking()
-   expect(get_booking_response).toEqual(valid_booking)
+   const booking_data = await booking.get_booking();
+   expect(booking_data).toEqual(valid_booking);
 })

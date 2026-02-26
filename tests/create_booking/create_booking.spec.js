@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { valid_booking } from './create_booking_data.js'
-import { json } from 'node:stream/consumers';
+import { CreateBooking } from '../../pages/create_booking.js';
+import { valid_booking } from './create_booking_data.js';
 
 // https://restful-booker.herokuapp.com/booking
 //create boking, get booking (happy path)
@@ -8,21 +8,13 @@ import { json } from 'node:stream/consumers';
 //create booking, total price 0, -1
 //create booking, empty string first name (validation)
 //create booking, empty string surname (validation)
-test.beforeEach(async ({ request }) => {
-    const responses = await request.post('https://restful-booker.herokuapp.com/auth', {
-        data: {
-        "username" : "admin",
-        "password": "password123"
-        }
-    });
-})
 
-test('I can create booking succesfully', async ({ request }) => {
-    const response = await request.post('https://restful-booker.herokuapp.com/booking', {
-        data: valid_booking
-    })
-    console.log(await response.text())
-    let json_response = await response.json()
-    let booking_id = json_response.bookingid
-    expect(response.ok(200)).toBeTruthy()
+
+test('I can create booking and retrieve it succesfully', async ({ request }) => {
+   let booking = new CreateBooking(request)
+   const booking_id = await booking.create_booking("valid")
+   expect(booking_id).not.toBeNull()
+   
+   const get_booking_response = await booking.get_booking()
+   expect(get_booking_response).toEqual(valid_booking)
 })

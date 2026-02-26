@@ -12,7 +12,9 @@ import { valid_booking } from './create_booking_data.js';
 
 test('I can create booking and retrieve it succesfully', async ({ request }) => {
    let booking = new CreateBooking(request)
-   const booking_id = await booking.create_booking("valid")
+   const response = await booking.create_booking("valid")
+   expect(await response.ok()).toBeTruthy()
+   const booking_id = await booking.get_booking_id(response)
    expect(booking_id).not.toBeNull()
    
    const get_booking_response = await booking.get_booking()

@@ -57,9 +57,17 @@ class CreateBooking {
         const response = await this.request.post('https://restful-booker.herokuapp.com/booking', {
             data: data_to_test
         })
-        let text_response = await response.json()
-        this.booking_id = text_response.bookingid
+        return response
+    }
+
+    async get_booking_id(response) {
+        const response_json = await this.convert_response_to_json(response)
+        this.booking_id = response_json.bookingid
         return this.booking_id
+    }
+
+    async convert_response_to_json(response) {
+        return response.json()
     }
 
     async get_booking() {

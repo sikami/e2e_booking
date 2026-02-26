@@ -22,3 +22,9 @@ test('I can create booking and retrieve it succesfully', async ({ request }) => 
    const booking_data = await booking.get_booking();
    expect(booking_data).toEqual(valid_booking);
 })
+
+test('First name is required to create booking', async ({ request }) => {
+      const booking = new CreateBooking(request);
+      const booking_response = await booking.create_booking("invalid missing first name");
+      expect(await booking_response.ok()).toBeFalsy();
+});

@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { valid_booking, invalid_missing_required, invalid_wrong_type, invalid_bad_date_format, invalid_date_logic
+import { valid_booking, invalid_missing_firstname_required, invalid_missing_lastname_required, invalid_wrong_type, invalid_bad_date_format, invalid_date_logic
 , invalid_negative_price, invalid_missing_bookingdates } from '../tests/create_booking/create_booking_data';
 
 class CreateBooking {
@@ -27,7 +27,10 @@ class CreateBooking {
                 data_validity = valid_booking
                 break;
             case "invalid missing first name":
-                data_validity = invalid_missing_required
+                data_validity = invalid_missing_firstname_required
+                break;
+            case "invalid missing last name":
+                data_validity = invalid_missing_lastname_required
                 break;
             case "invalid wrong type":
                 data_validity = invalid_wrong_type
@@ -41,7 +44,7 @@ class CreateBooking {
             case "invalid negative price":
                 data_validity = invalid_negative_price
                 break;
-            case "invalid missing bookingdates":
+            case "invalid missing booking dates":
                 data_validity = invalid_missing_bookingdates
                 break;
             default:

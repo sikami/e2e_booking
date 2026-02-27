@@ -10,8 +10,16 @@ const valid_booking = {
     "additionalneeds" : "Breakfast"
 }
 
-const invalid_missing_required = {
+const invalid_missing_firstname_required = {
   lastname: "Doe",
+  totalprice: 450,
+  depositpaid: true,
+  bookingdates: { checkin: "2019-01-01", checkout: "2019-01-11" },
+  additionalneeds: "Breakfast",
+};
+
+const invalid_missing_lastname_required = {
+  firstname: "Doe",
   totalprice: 450,
   depositpaid: true,
   bookingdates: { checkin: "2019-01-01", checkout: "2019-01-11" },
@@ -64,7 +72,8 @@ const invalid_missing_bookingdates = {
 
 export {
   valid_booking,
-  invalid_missing_required,
+  invalid_missing_firstname_required,
+  invalid_missing_lastname_required,
   invalid_wrong_type,
   invalid_bad_date_format,
   invalid_date_logic,

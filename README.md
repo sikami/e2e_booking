@@ -22,3 +22,9 @@ npx playwright test
 
 ## Notes
 - Tests hit the public demo API at `https://restful-booker.herokuapp.com/`.
+
+## Potential bugs (observed in tests)
+- API accepts invalid data types for fields that should be strict.
+- API allows checkout date earlier than checkin date.
+- API accepts invalid date formats.
+- API allows negative and 0 values for total price.
